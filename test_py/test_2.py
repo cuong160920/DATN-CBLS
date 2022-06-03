@@ -3,7 +3,7 @@ import math
 
 
 pd.options.mode.chained_assignment = None
-df = pd.read_csv('csv_folder/avg.csv', header=0)
+df = pd.read_csv('../csv_folder/avg.csv', header=0)
 
 df1 = df
 

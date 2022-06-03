@@ -64,7 +64,7 @@ from ortools.sat.python import cp_model
 #     main()
 
 def read_data():
-    f = open('po_list.txt', 'r')
+    f = open('../po_list.txt', 'r')
 
     data = f.readlines()
 

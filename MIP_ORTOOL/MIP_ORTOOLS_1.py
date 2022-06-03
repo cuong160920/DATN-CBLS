@@ -48,8 +48,8 @@ import math
 
 
 def read_data():
-    df_parcel = pd.read_csv('aaa.csv', header=0)
-    df_post_office = pd.read_csv('po_address_7_district.csv', header=0)
+    df_parcel = pd.read_csv('../aaa.csv', header=0)
+    df_post_office = pd.read_csv('../po_address_7_district.csv', header=0)
 
     '''
         List of distances of parcel in hoan kiem district
@@ -238,7 +238,7 @@ def read_data():
         Read list post office of a postman
     '''
 
-    f = open('po_list_1.txt', 'r')
+    f = open('../po_list_1.txt', 'r')
 
     data = f.readlines()
 

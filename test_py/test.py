@@ -26,11 +26,11 @@ def calculate_distance(x1, y1, x2, y2):
     return math.sqrt(math.pow((x1 - x2), 2) + math.pow((y1 - y2), 2))
 
 
-df_1 = pd.read_csv('csv_folder/added_district_data.csv', header=0)
+df_1 = pd.read_csv('../csv_folder/added_district_data.csv', header=0)
 
 df_order_address = df_1[['lat', 'long', 'district']]
 
-df_2 = pd.read_csv('post_office_address/all_post_office_drop_duplicate.csv', header=0)
+df_2 = pd.read_csv('../post_office_address/all_post_office_drop_duplicate.csv', header=0)
 
 df_post_office_address = df_2[['Mã bưu cục', 'lat', 'long', 'Quận', 'Bưu tá']]
 
