@@ -239,14 +239,14 @@ def ILS(n_restarts, check_x, number_po, number_postman, parcel_list):
 
 
 def main():
-    f = open('result_1.txt', 'w')
-    f0 = open('result_csv_1.csv', 'w')
+    # f = open('result_1.txt', 'w')
+    f0 = open('result_csv_2.csv', 'w')
 
     writer = csv.writer(f0)
 
-    for j in range(1, 2):
+    for j in range(1, 8):
         for k in range(1, 10):
-            filepath = 'input_1/po_list_%s.txt' % (k)
+            filepath = 'input/po_list_data_%s/po_list_%s.txt' % (j, k)
             parcel_list, po_of_postman_list, number_postman, number_po, po_per_postman = readInput(filepath)
 
             # print('parcel_list:', parcel_list)
@@ -265,7 +265,7 @@ def main():
             # x_ij - postman i works in post office j
             # And postman number of post office
 
-            n_restarts = 1000
+            n_restarts = 200
 
             best_solution, best_value = ILS(n_restarts, check_x, number_po, number_postman, parcel_list)
 
@@ -284,13 +284,13 @@ def main():
 
             writer.writerow(tmp)
 
-            f.writelines(str(j) + ' ' + str(k) + '\n')
-            f.writelines('Best solution:' +  ' '.join(string_best_solution) + '\n')
-            f.writelines('Best value:' + str(best_value) + '\n')
-            f.writelines('Number postman in po:' + str(number_postman_in_po_list) + '\n')
-            f.writelines('Average:' +  ' '.join(string_average_parcel_list) + '\n\n')
+            # f.writelines(str(j) + ' ' + str(k) + '\n')
+            # f.writelines('Best solution:' +  ' '.join(string_best_solution) + '\n')
+            # f.writelines('Best value:' + str(best_value) + '\n')
+            # f.writelines('Number postman in po:' + str(number_postman_in_po_list) + '\n')
+            # f.writelines('Average:' +  ' '.join(string_average_parcel_list) + '\n\n')
 
-    f.close()
+    # f.close()
     f0.close()
 
 
