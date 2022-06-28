@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-df = pd.read_csv('result_csv.csv', header=0)
+df = pd.read_csv('result_csv_3.csv', header=0)
 
 X = list(map(str, list(dict.fromkeys(df['test'].values.tolist()))))
 
@@ -24,7 +24,7 @@ for i in range(len(number_po)):
     plt.bar(X_axis + width * i, X_l[i], width, label = 'Max PO ' + str(i + 1))
 
 plt.xticks(X_axis, X)
-plt.xlabel("Groups")
+plt.xlabel("Tests")
 plt.ylabel("Objective Value")
 plt.legend()
 plt.show()

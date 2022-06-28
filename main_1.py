@@ -240,7 +240,7 @@ def ILS(n_restarts, check_x, number_po, number_postman, parcel_list):
 
 def main():
     # f = open('result_1.txt', 'w')
-    f0 = open('result_csv_2.csv', 'w')
+    f0 = open('result_csv_3.csv', 'w', newline='')
 
     writer = csv.writer(f0)
 
@@ -265,7 +265,7 @@ def main():
             # x_ij - postman i works in post office j
             # And postman number of post office
 
-            n_restarts = 200
+            n_restarts = 50
 
             best_solution, best_value = ILS(n_restarts, check_x, number_po, number_postman, parcel_list)
 
