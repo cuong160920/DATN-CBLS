@@ -198,10 +198,11 @@ def hillClimbing(x, check_x, number_postman, number_po, parcel_list, number_post
                         number_postman_in_po_list_sol = number_postman_in_po_list_tmp.copy()
                         average_parcel_list = average_parcel_list_tmp.copy()
 
+
     return solution, sol_value
 
 
-def ILS(n_restarts, check_x, number_po, number_postman, parcel_list):
+def ILS(i, n_restarts, check_x, number_po, number_postman, parcel_list):
     """
     Iterated Local Search
 
@@ -219,8 +220,13 @@ def ILS(n_restarts, check_x, number_po, number_postman, parcel_list):
 
     best_value = calculateObjValue(average_parcel_list)
 
+    f0 = open('result/result_csv_%s.csv' % i, 'w', newline='')
+
+    writer = csv.writer(f0)
+
+    writer.writerow([-1, best_value])
+
     for n in range(n_restarts):
-        print('Restart:', n)
         initial_x, initial_number_postman_in_po_list = generateRandomSolution(number_postman, number_po, check_x)
 
         tmp_solution, tmp_value = hillClimbing(initial_x, check_x, number_postman, number_po, parcel_list, initial_number_postman_in_po_list)
@@ -229,69 +235,63 @@ def ILS(n_restarts, check_x, number_po, number_postman, parcel_list):
             best_value = tmp_value
             best_solution = tmp_solution.copy()
 
+            writer.writerow([n, tmp_value])
 
-            print('Restart %d:' % n)
-            print('x:', best_solution)
-            print('Value:', best_value)
-
+    f0.close()
 
     return best_solution, best_value
 
 
 def main():
-    # f = open('result_1.txt', 'w')
-    f0 = open('result_csv_3.csv', 'w', newline='')
+    # f = open('result_1.txt', 'w'
 
-    writer = csv.writer(f0)
+    for j in range(1, 51):
+        filepath = 'input_1/po_list_%s.txt' % (j)
+        print(filepath)
+        parcel_list, po_of_postman_list, number_postman, number_po, po_per_postman = readInput(filepath)
 
-    for j in range(1, 8):
-        for k in range(1, 10):
-            filepath = 'input/po_list_data_%s/po_list_%s.txt' % (j, k)
-            parcel_list, po_of_postman_list, number_postman, number_po, po_per_postman = readInput(filepath)
+        # print('parcel_list:', parcel_list)
+        # print('po_of_postman_list:', po_of_postman_list)
+        # print('number_postman:', number_postman)
+        # print('po_per_postman:', po_per_postman)
 
-            # print('parcel_list:', parcel_list)
-            # print('po_of_postman_list:', po_of_postman_list)
-            # print('number_postman:', number_postman)
-            # print('po_per_postman:', po_per_postman)
+        # Checked list of post offices that each postman can do.
+        # If postman i can do at post office j, check_x[i][j] = 1.
+        check_x = [[0 for i in range(number_po + 1)] for i in range(number_postman + 1)]
 
-            # Checked list of post offices that each postman can do.
-            # If postman i can do at post office j, check_x[i][j] = 1.
-            check_x = [[0 for i in range(number_po + 1)] for i in range(number_postman + 1)]
+        for i in range(1, number_postman + 1):
+            for p in po_of_postman_list[i]:
+                check_x[i][p] = 1
 
-            for i in range(1, number_postman + 1):
-                for p in po_of_postman_list[i]:
-                    check_x[i][p] = 1
+        # x_ij - postman i works in post office j
+        # And postman number of post office
 
-            # x_ij - postman i works in post office j
-            # And postman number of post office
+        n_restarts = 100
 
-            n_restarts = 50
+        best_solution, best_value = ILS(j, n_restarts, check_x, number_po, number_postman, parcel_list)
 
-            best_solution, best_value = ILS(n_restarts, check_x, number_po, number_postman, parcel_list)
+        number_postman_in_po_list = calculateNumberPostmanInPoList(number_po, number_postman, best_solution)
 
-            number_postman_in_po_list = calculateNumberPostmanInPoList(number_po, number_postman, best_solution)
+        average_parcel_list = generate_average_parcel_list(number_postman_in_po_list, parcel_list)
 
-            average_parcel_list = generate_average_parcel_list(number_postman_in_po_list, parcel_list)
+        string_best_solution = [str(int) for int in best_solution]
+        string_average_parcel_list = [str(int) for int in average_parcel_list]
 
-            string_best_solution = [str(int) for int in best_solution]
-            string_average_parcel_list = [str(int) for int in average_parcel_list]
-
-            tmp = list()
-
-            tmp.append(k)
-            tmp.append(j)
-            tmp.append(best_value)
-
-            writer.writerow(tmp)
-
-            # f.writelines(str(j) + ' ' + str(k) + '\n')
-            # f.writelines('Best solution:' +  ' '.join(string_best_solution) + '\n')
-            # f.writelines('Best value:' + str(best_value) + '\n')
-            # f.writelines('Number postman in po:' + str(number_postman_in_po_list) + '\n')
-            # f.writelines('Average:' +  ' '.join(string_average_parcel_list) + '\n\n')
+        # tmp = list()
+        #
+        # tmp.append(k)
+        # tmp.append(j)
+        # tmp.append(best_value)
+        #
+        # writer.writerow(tmp)
+        # f.writelines(str(j) + ' ' + str(k) + '\n')
+        # f.writelines('Best solution:' +  ' '.join(string_best_solution) + '\n')
+        # f.writelines('Best value:' + str(best_value) + '\n')
+        # f.writelines('Number postman in po:' + str(number_postman_in_po_list) + '\n')
+        # f.writelines('Average:' +  ' '.join(string_average_parcel_list) + '\n\n')
 
     # f.close()
-    f0.close()
+    # f0.close()
 
 
 main()
