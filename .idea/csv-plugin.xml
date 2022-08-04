@@ -3,59 +3,45 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\aaa.csv">
+        <entry key="\full_result\result_csv_1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv_folder\added_district_data.csv">
+        <entry key="\nrestart_result\result_csv_1.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv_folder\avg.csv">
+        <entry key="\nrestart_result\result_csv_29.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv_folder\data_result.csv">
+        <entry key="\nrestart_result\result_csv_38.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv_folder\data_result_clear.csv">
+        <entry key="\nrestart_result\result_csv_5.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv_folder\order_address.csv">
+        <entry key="\nrestart_result\result_csv_6.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\post_office_address\all_post_office_drop_duplicate.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\post_office_address\nam_tu_liem.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="|" />
             </Attribute>
           </value>
         </entry>
@@ -150,28 +136,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\result_csv_4.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\result_csv_5.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\result_csv_6.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\result_csv_7.csv">
+        <entry key="\t_result\result_csv.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
